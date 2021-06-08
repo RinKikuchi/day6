@@ -21,7 +21,8 @@ defmodule Identicon do
 
   def mirror_row(row) do
     row2 = Enum.reverse(row)
-    Enum.dedup(row ++ row2)
+    |> List.delete_at(0)
+    row ++ row2
   end
 
   def filter_add_cells(struct) do
@@ -42,7 +43,7 @@ defmodule Identicon do
     :egd.render(img)
   end
 
-  def save_image(img,filename) do
+  def save_image(img, filename) do
     :egd.save(img, filename)
   end
 
